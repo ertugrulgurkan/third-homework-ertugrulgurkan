@@ -9,9 +9,9 @@ public class ProductDto {
     private String name;
     private BigDecimal price;
     private Date createDate;
-    private Long categoryId;
+    private String categoryId;
 
-    public ProductDto(String id, String name, BigDecimal price, Date createDate, Long categoryId) {
+    public ProductDto(String id, String name, BigDecimal price, Date createDate, String categoryId) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -54,11 +54,11 @@ public class ProductDto {
         this.createDate = createDate;
     }
 
-    public Long getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
+    public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
 

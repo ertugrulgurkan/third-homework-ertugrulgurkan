@@ -1,0 +1,95 @@
+// http://localhost:8080/api/categories
+
+[
+  {
+    "id": "61c0e36d5fabed3817ecc56b",
+    "name": "Moda",
+    "level": 1,
+    "superCategoryId": null
+  },
+  {
+    "id": "61c0e4958ca5ee3d40a2be0b",
+    "name": "Elbise",
+    "level": 2,
+    "superCategoryId": "61c0e36d5fabed3817ecc56b"
+  },
+  {
+    "id": "61c0e4e18ca5ee3d40a2be0c",
+    "name": "Gömlek",
+    "level": 3,
+    "superCategoryId": "61c0e4958ca5ee3d40a2be0b"
+  }
+]
+
+// http://localhost:8080/api/products/
+
+[
+  {
+    "id": "61c0e5c88ca5ee3d40a2be0d",
+    "name": "Mavi Gömlek",
+    "price": 200,
+    "createDate": "2021-12-20T20:19:55.394+00:00",
+    "categoryId": "61c0e4958ca5ee3d40a2be0b"
+  },
+  {
+    "id": "61c0e5dc8ca5ee3d40a2be0e",
+    "name": "Gri Gömlek",
+    "price": 230,
+    "createDate": "2021-12-20T20:19:55.394+00:00",
+    "categoryId": "61c0e4958ca5ee3d40a2be0b"
+  },
+  {
+    "id": "61c0e5e48ca5ee3d40a2be0f",
+    "name": "Beyaz Gömlek",
+    "price": 150,
+    "createDate": "2021-12-20T20:19:55.394+00:00",
+    "categoryId": "61c0e4958ca5ee3d40a2be0b"
+  }
+]
+
+// http://localhost:8080/api/users
+
+[
+  {
+    "id": "61c0e25e5fabed3817ecc569",
+    "name": "Ertugrul",
+    "username": "erturulg",
+    "surname": "Gurkan",
+    "email": "ertugrulgurkan16@gmail.com",
+    "phone": "5375043222"
+  },
+  {
+    "id": "61c0e27c5fabed3817ecc56a",
+    "name": "Ozan",
+    "username": "ozany",
+    "surname": "Yilmaz",
+    "email": "ozanyilmaz@gmail.com",
+    "phone": "5375023222"
+  }
+]
+
+// http://localhost:8080/api/comments
+
+[
+  {
+    "id": "61c0e69d7a5ca15ad6e5b8fd",
+    "comment": "Harika bir ürün tavsiye edilir",
+    "commentDate": "2021-12-20T20:24:27.810+00:00",
+    "userId": "61c0e25e5fabed3817ecc569",
+    "productId": "61c0e5c88ca5ee3d40a2be0d"
+  },
+  {
+    "id": "61c0e6ca7a5ca15ad6e5b8fe",
+    "comment": "Fena değil, pek memnun kalmadım",
+    "commentDate": "2021-12-20T20:24:27.810+00:00",
+    "userId": "61c0e27c5fabed3817ecc56a",
+    "productId": "61c0e5c88ca5ee3d40a2be0d"
+  },
+  {
+    "id": "61c0e6e77a5ca15ad6e5b8ff",
+    "comment": "Fiyatı çok uygun",
+    "commentDate": "2021-12-20T20:24:27.810+00:00",
+    "userId": "61c0e25e5fabed3817ecc569",
+    "productId": "61c0e5e48ca5ee3d40a2be0f"
+  }
+]

@@ -11,7 +11,7 @@ import java.util.List;
 
 //Api üzerinden kategorilere erişmek için yazılmış controller sınıfı
 @RestController
-@RequestMapping("/api/categories/")
+@RequestMapping("/api/categories")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -20,7 +20,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("")
+    @GetMapping(value = {"", "/"})
     public List<CategoryDto> findAll() {
         return categoryService.findAll();
     }
@@ -30,7 +30,7 @@ public class CategoryController {
         return categoryService.findById(id);
     }
 
-    @PostMapping("")
+    @PostMapping(value = {"", "/"})
     public ResponseEntity<Object> save(@RequestBody CategoryDto categoryDto) {
 
         categoryDto = categoryService.save(categoryDto);
@@ -40,7 +40,7 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable String id) {
-        categoryService.delete(id);
+        categoryService.deleteById(id);
     }
 
 }

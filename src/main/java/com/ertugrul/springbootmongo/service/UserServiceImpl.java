@@ -3,6 +3,7 @@ package com.ertugrul.springbootmongo.service;
 import com.ertugrul.springbootmongo.converter.UserConverter;
 import com.ertugrul.springbootmongo.dto.UserDto;
 import com.ertugrul.springbootmongo.entity.User;
+import com.ertugrul.springbootmongo.exception.UserNotFoundException;
 import com.ertugrul.springbootmongo.service.entityservice.UserEntityService;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto findById(String id) {
         User user = userEntityService.findById(id);
+        if (user == null)
+            throw new UserNotFoundException("User not found. id: " + id);
         return UserConverter.INSTANCE.convertUserToUserDto(user);
     }
 
@@ -38,12 +41,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteById(String id) {
+        User user = userEntityService.findById(id);
+        if (user == null)
+            throw new UserNotFoundException("User not found. id: " + id);
         userEntityService.deleteById(id);
     }
 
     @Override
     public void delete(UserDto userDto) {
         User user = UserConverter.INSTANCE.convertUserDtoToUser(userDto);
+        user = userEntityService.findById(user.getId());
+        if (user == null)
+            throw new UserNotFoundException("User id not found.");
         userEntityService.delete(user);
     }
 }

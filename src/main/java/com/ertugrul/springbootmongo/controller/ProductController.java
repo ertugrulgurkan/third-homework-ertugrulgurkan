@@ -13,7 +13,7 @@ import java.util.List;
 
 //Api üzerinden ürünlere erişmek için yazılmış controller sınıfı
 @RestController
-@RequestMapping("/api/products/")
+@RequestMapping("/api/products")
 public class ProductController {
 
     private final ProductService productService;
@@ -22,14 +22,12 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("")
+    @GetMapping(value = {"", "/"})
     public MappingJacksonValue findAllProductList() {
 
         List<ProductDto> productList = productService.findAll();
 
-        MappingJacksonValue mapping = new MappingJacksonValue(productList);
-
-        return mapping;
+        return new MappingJacksonValue(productList);
 
     }
 
@@ -43,37 +41,24 @@ public class ProductController {
                         .findAllProductList()
         );
 
-        EntityModel entityModel = EntityModel.of(product);
+        EntityModel<ProductDto> entityModel = EntityModel.of(product);
 
         entityModel.add(linkToProduct.withRel("all-products"));
 
-        MappingJacksonValue mapping = new MappingJacksonValue(entityModel);
+        return new MappingJacksonValue(entityModel);
 
-        return mapping;
-
-//        return productService.findById(id);
     }
 
-//    @GetMapping("/detail/{id}")
-//    public ProductDetailDto findProductDetailDtoById(@PathVariable String id){
-//        return productService.findProductDetailDtoById(id);
-//    }
-
-    @PostMapping("")
-    public ResponseEntity<Object> saveProduct(/**@Valid*/@RequestBody ProductDto productDto) {
+    @PostMapping(value = {"", "/"})
+    public ResponseEntity<Object> saveProduct(@RequestBody ProductDto productDto) {
         productDto = productService.save(productDto);
 
         return new ResponseEntity<>(productDto, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable String id) {
         productService.deleteById(id);
     }
 
-//    @GetMapping("categories/{categoryId}")
-//    public List<ProductDetailDto> findAll
-//    ByKategoriId(@PathVariable String categoryId){
-//        return productService.findAllProductByCategoryId(categoryId);
-//    }
 }

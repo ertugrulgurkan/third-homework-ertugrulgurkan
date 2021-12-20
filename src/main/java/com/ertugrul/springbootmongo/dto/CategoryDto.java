@@ -5,12 +5,12 @@ public class CategoryDto {
     private String id;
     private String name;
     private Long level;
-    private Long superCategoryId;
+    private String superCategoryId;
 
     public CategoryDto() {
     }
 
-    public CategoryDto(String id, String name, Long level, Long superCategoryId) {
+    public CategoryDto(String id, String name, Long level, String superCategoryId) {
         this.id = id;
         this.name = name;
         this.level = level;
@@ -41,11 +41,11 @@ public class CategoryDto {
         this.level = level;
     }
 
-    public Long getSuperCategoryId() {
+    public String getSuperCategoryId() {
         return superCategoryId;
     }
 
-    public void setSuperCategoryId(Long superCategoryId) {
+    public void setSuperCategoryId(String superCategoryId) {
         this.superCategoryId = superCategoryId;
     }
 
