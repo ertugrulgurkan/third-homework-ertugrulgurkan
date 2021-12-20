@@ -1,7 +1,7 @@
 package com.ertugrul.springbootmongo.controller;
 
 
-import com.ertugrul.springbootmongo.entity.ProductComment;
+import com.ertugrul.springbootmongo.dto.ProductCommentDto;
 import com.ertugrul.springbootmongo.service.ProductCommentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,22 +23,22 @@ public class ProductCommentController {
 
     // GET http://localhost:8080/api/comments
     @GetMapping(value = {"", "/"})
-    public List<ProductComment> findAll() {
+    public List<ProductCommentDto> findAll() {
         return productCommentService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ProductComment findById(@PathVariable String id) {
+    public ProductCommentDto findById(@PathVariable String id) {
         return productCommentService.findById(id);
     }
 
     @PostMapping(value = {"", "/"})
-    public ResponseEntity<Object> save(@RequestBody ProductComment productComment) {
-        productComment = productCommentService.save(productComment);
+    public ResponseEntity<Object> save(@RequestBody ProductCommentDto productCommentDto) {
+        productCommentDto = productCommentService.save(productCommentDto);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("{id}")
-                .buildAndExpand(productComment.getId())
+                .buildAndExpand(productCommentDto.getId())
                 .toUri();
         return ResponseEntity.created(uri).build();
     }
@@ -48,9 +48,10 @@ public class ProductCommentController {
     public void deleteById(@PathVariable String id) {
         productCommentService.deleteById(id);
     }
+
     // Yorum silebilecek servis
     @DeleteMapping(value = {"", "/"})
-    public void delete(@RequestBody ProductComment productComment) {
-        productCommentService.delete(productComment);
+    public void delete(@RequestBody ProductCommentDto productCommentDto) {
+        productCommentService.delete(productCommentDto);
     }
 }

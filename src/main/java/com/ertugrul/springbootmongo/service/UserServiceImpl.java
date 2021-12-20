@@ -16,23 +16,26 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserEntityService userEntityService) {
         this.userEntityService = userEntityService;
     }
-    
+
     @Override
     public List<UserDto> findAll() {
         List<User> userList = userEntityService.findAll();
         return UserConverter.INSTANCE.convertAllUserListToUserDtoList(userList);
     }
+
     @Override
     public UserDto findById(String id) {
         User user = userEntityService.findById(id);
         return UserConverter.INSTANCE.convertUserToUserDto(user);
     }
+
     @Override
     public UserDto save(UserDto userDto) {
         User user = UserConverter.INSTANCE.convertUserDtoToUser(userDto);
         User savedUser = userEntityService.save(user);
         return UserConverter.INSTANCE.convertUserToUserDto(savedUser);
     }
+
     @Override
     public void deleteById(String id) {
         userEntityService.deleteById(id);

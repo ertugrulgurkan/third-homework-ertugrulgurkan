@@ -1,6 +1,6 @@
 package com.ertugrul.springbootmongo.controller;
 
-import com.ertugrul.springbootmongo.entity.Product;
+import com.ertugrul.springbootmongo.dto.ProductDto;
 import com.ertugrul.springbootmongo.service.ProductService;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -25,7 +25,7 @@ public class ProductController {
     @GetMapping("")
     public MappingJacksonValue findAllProductList() {
 
-        List<Product> productList = productService.findAll();
+        List<ProductDto> productList = productService.findAll();
 
         MappingJacksonValue mapping = new MappingJacksonValue(productList);
 
@@ -36,7 +36,7 @@ public class ProductController {
     @GetMapping("/{id}")
     public MappingJacksonValue findProductById(@PathVariable String id) {
 
-        Product product = productService.findById(id);
+        ProductDto product = productService.findById(id);
 
         WebMvcLinkBuilder linkToProduct = WebMvcLinkBuilder.linkTo(
                 WebMvcLinkBuilder.methodOn(this.getClass())
@@ -60,10 +60,10 @@ public class ProductController {
 //    }
 
     @PostMapping("")
-    public ResponseEntity<Object> saveProduct(/**@Valid*/@RequestBody Product product) {
-        product = productService.save(product);
+    public ResponseEntity<Object> saveProduct(/**@Valid*/@RequestBody ProductDto productDto) {
+        productDto = productService.save(productDto);
 
-        return new ResponseEntity<>(product, HttpStatus.CREATED);
+        return new ResponseEntity<>(productDto, HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")

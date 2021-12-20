@@ -16,22 +16,26 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryServiceImpl(CategoryEntityService categoryEntityService) {
         this.categoryEntityService = categoryEntityService;
     }
+
     @Override
     public List<CategoryDto> findAll() {
         List<Category> categoryList = categoryEntityService.findAll();
         return CategoryConverter.INSTANCE.convertAllCategoryListToCategoryDtoList(categoryList);
     }
+
     @Override
     public CategoryDto findById(String id) {
         Category category = categoryEntityService.findById(id);
         return CategoryConverter.INSTANCE.convertCategoryToCategoryDto(category);
     }
+
     @Override
     public CategoryDto save(CategoryDto categoryDto) {
         Category category = CategoryConverter.INSTANCE.convertCategoryDtoToCategory(categoryDto);
         Category savedCategory = categoryEntityService.save(category);
         return CategoryConverter.INSTANCE.convertCategoryToCategoryDto(savedCategory);
     }
+
     @Override
     public void delete(String id) {
         categoryEntityService.deleteById(id);

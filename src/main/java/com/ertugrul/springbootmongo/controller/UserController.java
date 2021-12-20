@@ -47,6 +47,7 @@ public class UserController {
     public void deleteById(@PathVariable String id) {
         userService.deleteById(id);
     }
+
     // Kullanici silebilecek servis
     @DeleteMapping(value = {"", "/"})
     public void delete(@RequestBody UserDto userDto) {

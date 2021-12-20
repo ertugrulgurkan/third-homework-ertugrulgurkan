@@ -5,13 +5,13 @@ import java.util.Date;
 
 public class ProductDto {
 
-    private Long id;
+    private String id;
     private String name;
     private BigDecimal price;
     private Date createDate;
     private Long categoryId;
 
-    public ProductDto(Long id, String name, BigDecimal price, Date createDate, Long categoryId) {
+    public ProductDto(String id, String name, BigDecimal price, Date createDate, Long categoryId) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -22,11 +22,11 @@ public class ProductDto {
     public ProductDto() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

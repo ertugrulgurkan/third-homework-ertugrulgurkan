@@ -2,7 +2,7 @@ package com.ertugrul.springbootmongo.dto;
 
 public class CategoryDto {
 
-    private Long id;
+    private String id;
     private String name;
     private Long level;
     private Long superCategoryId;
@@ -10,18 +10,18 @@ public class CategoryDto {
     public CategoryDto() {
     }
 
-    public CategoryDto(Long id, String name, Long level, Long superCategoryId) {
+    public CategoryDto(String id, String name, Long level, Long superCategoryId) {
         this.id = id;
         this.name = name;
         this.level = level;
         this.superCategoryId = superCategoryId;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

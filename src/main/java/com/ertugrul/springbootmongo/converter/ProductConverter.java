@@ -16,7 +16,9 @@ public interface ProductConverter {
     ProductConverter INSTANCE = Mappers.getMapper(ProductConverter.class);
 
     Product convertProductDtoToProduct(ProductDto productDto);
+
     ProductDto convertProductToProductDto(Product product);
+
     List<ProductDto> convertAllProductToProductDto(List<Product> productList);
 
     @Mapping(target = "productName", source = "name")
