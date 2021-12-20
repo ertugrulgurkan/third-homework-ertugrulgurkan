@@ -1,5 +1,7 @@
 package com.ertugrul.springbootmongo.service;
 
+import com.ertugrul.springbootmongo.converter.CategoryConverter;
+import com.ertugrul.springbootmongo.dto.CategoryDto;
 import com.ertugrul.springbootmongo.entity.Category;
 import com.ertugrul.springbootmongo.service.entityservice.CategoryEntityService;
 import org.springframework.stereotype.Service;
@@ -14,19 +16,23 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryServiceImpl(CategoryEntityService categoryEntityService) {
         this.categoryEntityService = categoryEntityService;
     }
-
-    public List<Category> findAll() {
-        return categoryEntityService.findAll();
+    @Override
+    public List<CategoryDto> findAll() {
+        List<Category> categoryList = categoryEntityService.findAll();
+        return CategoryConverter.INSTANCE.convertAllCategoryListToCategoryDtoList(categoryList);
     }
-
-    public Category findById(String id) {
-        return categoryEntityService.findById(id);
+    @Override
+    public CategoryDto findById(String id) {
+        Category category = categoryEntityService.findById(id);
+        return CategoryConverter.INSTANCE.convertCategoryToCategoryDto(category);
     }
-
-    public Category save(Category category) {
-        return categoryEntityService.save(category);
+    @Override
+    public CategoryDto save(CategoryDto categoryDto) {
+        Category category = CategoryConverter.INSTANCE.convertCategoryDtoToCategory(categoryDto);
+        Category savedCategory = categoryEntityService.save(category);
+        return CategoryConverter.INSTANCE.convertCategoryToCategoryDto(savedCategory);
     }
-
+    @Override
     public void delete(String id) {
         categoryEntityService.deleteById(id);
     }

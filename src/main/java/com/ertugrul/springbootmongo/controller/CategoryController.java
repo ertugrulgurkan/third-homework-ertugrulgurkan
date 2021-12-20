@@ -1,6 +1,6 @@
 package com.ertugrul.springbootmongo.controller;
 
-import com.ertugrul.springbootmongo.entity.Category;
+import com.ertugrul.springbootmongo.dto.CategoryDto;
 import com.ertugrul.springbootmongo.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,21 +21,21 @@ public class CategoryController {
     }
 
     @GetMapping("")
-    public List<Category> findAll() {
+    public List<CategoryDto> findAll() {
         return categoryService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Category findById(@PathVariable String id) {
+    public CategoryDto findById(@PathVariable String id) {
         return categoryService.findById(id);
     }
 
     @PostMapping("")
-    public ResponseEntity<Object> save(@RequestBody Category category) {
+    public ResponseEntity<Object> save(@RequestBody CategoryDto categoryDto) {
 
-        category = categoryService.save(category);
+        categoryDto = categoryService.save(categoryDto);
 
-        return new ResponseEntity<>(category, HttpStatus.CREATED);
+        return new ResponseEntity<>(categoryDto, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

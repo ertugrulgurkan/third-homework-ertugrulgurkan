@@ -1,17 +1,17 @@
 package com.ertugrul.springbootmongo.service;
 
 
-import com.ertugrul.springbootmongo.entity.Product;
+import com.ertugrul.springbootmongo.dto.ProductDto;
 
 import java.util.List;
 
 public interface ProductService {
 
-    List<Product> findAll();
+    List<ProductDto> findAll();
 
-    Product findById(String id);
+    ProductDto findById(String id);
 
-    Product save(Product product);
+    ProductDto save(ProductDto productDto);
 
     void deleteById(String id);
 

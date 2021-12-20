@@ -1,5 +1,7 @@
 package com.ertugrul.springbootmongo.service;
 
+import com.ertugrul.springbootmongo.converter.ProductCommentConverter;
+import com.ertugrul.springbootmongo.dto.ProductCommentDto;
 import com.ertugrul.springbootmongo.entity.ProductComment;
 import com.ertugrul.springbootmongo.service.entityservice.ProductCommentEntityService;
 import org.springframework.stereotype.Service;
@@ -15,29 +17,30 @@ public class ProductCommentServiceImpl implements ProductCommentService {
     public ProductCommentServiceImpl(ProductCommentEntityService productCommentEntityService) {
         this.productCommentEntityService = productCommentEntityService;
     }
-
     @Override
-    public List<ProductComment> findAll() {
-        return productCommentEntityService.findAll();
+    public List<ProductCommentDto> findAll() {
+        List<ProductComment> productCommentList = productCommentEntityService.findAll();
+        return ProductCommentConverter.INSTANCE.convertAllProductCommentListToProductCommentDtoList(productCommentList);
     }
-
     @Override
-    public ProductComment findById(String id) {
-        return productCommentEntityService.findById(id);
+    public ProductCommentDto findById(String id) {
+        ProductComment productComment = productCommentEntityService.findById(id);
+        return ProductCommentConverter.INSTANCE.convertProductCommentToProductCommentDto(productComment);
     }
-
     @Override
-    public ProductComment save(ProductComment productComment) {
-        return productCommentEntityService.save(productComment);
+    public ProductCommentDto save(ProductCommentDto productCommentDto) {
+        ProductComment productComment = ProductCommentConverter.INSTANCE.convertProductCommentDtoToProductComment(productCommentDto);
+        ProductComment savedProductComment = productCommentEntityService.save(productComment);
+        return ProductCommentConverter.INSTANCE.convertProductCommentToProductCommentDto(savedProductComment);
     }
-
     @Override
     public void deleteById(String id) {
         productCommentEntityService.deleteById(id);
     }
 
     @Override
-    public void delete(ProductComment productComment) {
+    public void delete(ProductCommentDto productCommentDto) {
+        ProductComment productComment = ProductCommentConverter.INSTANCE.convertProductCommentDtoToProductComment(productCommentDto);
         productCommentEntityService.delete(productComment);
     }
 }

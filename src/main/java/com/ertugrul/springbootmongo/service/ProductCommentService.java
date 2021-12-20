@@ -1,20 +1,19 @@
 package com.ertugrul.springbootmongo.service;
 
-
-import com.ertugrul.springbootmongo.entity.ProductComment;
+import com.ertugrul.springbootmongo.dto.ProductCommentDto;
 
 import java.util.List;
 
 public interface ProductCommentService {
 
-    List<ProductComment> findAll();
+    List<ProductCommentDto> findAll();
 
-    ProductComment findById(String id);
+    ProductCommentDto findById(String id);
 
-    ProductComment save(ProductComment productComment);
+    ProductCommentDto save(ProductCommentDto productCommentDto);
 
     void deleteById(String id);
 
-    void delete(ProductComment productComment);
+    void delete(ProductCommentDto productCommentDto);
 
 }

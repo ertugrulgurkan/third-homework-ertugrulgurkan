@@ -1,17 +1,17 @@
 package com.ertugrul.springbootmongo.service;
 
 
-import com.ertugrul.springbootmongo.entity.Category;
+import com.ertugrul.springbootmongo.dto.CategoryDto;
 
 import java.util.List;
 
 public interface CategoryService {
 
-    List<Category> findAll();
+    List<CategoryDto> findAll();
 
-    Category findById(String id);
+    CategoryDto findById(String id);
 
-    Category save(Category category);
+    CategoryDto save(CategoryDto categoryDto);
 
     void delete(String id);
 }

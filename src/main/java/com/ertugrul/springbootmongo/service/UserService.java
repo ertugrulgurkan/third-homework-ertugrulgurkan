@@ -1,20 +1,20 @@
 package com.ertugrul.springbootmongo.service;
 
 
-import com.ertugrul.springbootmongo.entity.User;
+import com.ertugrul.springbootmongo.dto.UserDto;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<User> findAll();
+    List<UserDto> findAll();
 
-    User findById(String id);
+    UserDto findById(String id);
 
-    User save(User user);
+    UserDto save(UserDto userDto);
 
     void deleteById(String id);
 
-    void delete(User user);
+    void delete(UserDto userDto);
 
 }

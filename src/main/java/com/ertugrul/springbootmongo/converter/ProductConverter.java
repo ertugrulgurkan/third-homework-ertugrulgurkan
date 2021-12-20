@@ -17,6 +17,7 @@ public interface ProductConverter {
 
     Product convertProductDtoToProduct(ProductDto productDto);
     ProductDto convertProductToProductDto(Product product);
+    List<ProductDto> convertAllProductToProductDto(List<Product> productList);
 
     @Mapping(target = "productName", source = "name")
     @Mapping(target = "productPrice", source = "price")

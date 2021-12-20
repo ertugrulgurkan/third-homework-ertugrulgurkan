@@ -1,7 +1,7 @@
 package com.ertugrul.springbootmongo.controller;
 
 
-import com.ertugrul.springbootmongo.entity.User;
+import com.ertugrul.springbootmongo.dto.UserDto;
 import com.ertugrul.springbootmongo.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,22 +22,22 @@ public class UserController {
 
     // GET http://localhost:8080/api/users
     @GetMapping(value = {"", "/"})
-    public List<User> findAll() {
+    public List<UserDto> findAll() {
         return userService.findAll();
     }
 
     @GetMapping("/{id}")
-    public User findById(@PathVariable String id) {
+    public UserDto findById(@PathVariable String id) {
         return userService.findById(id);
     }
 
     @PostMapping(value = {"", "/"})
-    public ResponseEntity<Object> save(@RequestBody User user) {
-        user = userService.save(user);
+    public ResponseEntity<Object> save(@RequestBody UserDto userDto) {
+        userDto = userService.save(userDto);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("{id}")
-                .buildAndExpand(user.getId())
+                .buildAndExpand(userDto.getId())
                 .toUri();
         return ResponseEntity.created(uri).build();
     }
@@ -49,7 +49,7 @@ public class UserController {
     }
     // Kullanici silebilecek servis
     @DeleteMapping(value = {"", "/"})
-    public void delete(@RequestBody User user) {
-        userService.delete(user);
+    public void delete(@RequestBody UserDto userDto) {
+        userService.delete(userDto);
     }
 }

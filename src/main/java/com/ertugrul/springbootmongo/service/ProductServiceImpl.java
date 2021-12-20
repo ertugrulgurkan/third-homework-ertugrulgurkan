@@ -1,5 +1,7 @@
 package com.ertugrul.springbootmongo.service;
 
+import com.ertugrul.springbootmongo.converter.ProductConverter;
+import com.ertugrul.springbootmongo.dto.ProductDto;
 import com.ertugrul.springbootmongo.entity.Product;
 import com.ertugrul.springbootmongo.service.entityservice.ProductEntityService;
 import org.springframework.stereotype.Service;
@@ -16,18 +18,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findAll() {
-        return productEntityService.findAll();
+    public List<ProductDto> findAll() {
+        List<Product> productList = productEntityService.findAll();
+        return ProductConverter.INSTANCE.convertAllProductToProductDto(productList);
     }
 
     @Override
-    public Product findById(String id) {
-        return productEntityService.findById(id);
+    public ProductDto findById(String id) {
+        Product product = productEntityService.findById(id);
+        return ProductConverter.INSTANCE.convertProductToProductDto(product);
     }
 
     @Override
-    public Product save(Product product) {
-        return productEntityService.save(product);
+    public ProductDto save(ProductDto productDto) {
+        Product product = ProductConverter.INSTANCE.convertProductDtoToProduct(productDto);
+        Product savedProduct = productEntityService.save(product);
+        return ProductConverter.INSTANCE.convertProductToProductDto(savedProduct);
     }
 
     @Override
