@@ -19,27 +19,27 @@ public class CategoryEntityService {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Category> findAll(){
+    public List<Category> findAll() {
         return categoryRepository.findAll();
     }
 
-    public Category findById(String id){
+    public Category findById(String id) {
 
         Optional<Category> optional = categoryRepository.findById(id);
 
         Category category = null;
-        if (optional.isPresent()){
+        if (optional.isPresent()) {
             category = optional.get();
         }
 
         return category;
     }
 
-    public void deleteById(String id){
+    public void deleteById(String id) {
         categoryRepository.deleteById(id);
     }
 
-    public Category save(Category category){
+    public Category save(Category category) {
         return categoryRepository.save(category);
     }
 }

@@ -2,15 +2,18 @@ package com.ertugrul.springbootmongo.service;
 
 import com.ertugrul.springbootmongo.entity.Product;
 import com.ertugrul.springbootmongo.service.entityservice.ProductEntityService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    private ProductEntityService productEntityService;
+    private final ProductEntityService productEntityService;
+
+    public ProductServiceImpl(ProductEntityService productEntityService) {
+        this.productEntityService = productEntityService;
+    }
 
     @Override
     public List<Product> findAll() {

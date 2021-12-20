@@ -32,7 +32,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public MappingJacksonValue findProductById(@PathVariable String id){
+    public MappingJacksonValue findProductById(@PathVariable String id) {
 
         Product product = productService.findById(id);
 
@@ -58,14 +58,14 @@ public class ProductController {
 //    }
 
     @PostMapping("")
-    public ResponseEntity<Object> saveProduct(/**@Valid*/ @RequestBody Product product){
+    public ResponseEntity<Object> saveProduct(/**@Valid*/@RequestBody Product product) {
         product = productService.save(product);
 
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")
-    public void deleteProduct(@PathVariable String id){
+    public void deleteProduct(@PathVariable String id) {
         productService.deleteById(id);
     }
 

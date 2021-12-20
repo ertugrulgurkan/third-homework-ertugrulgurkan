@@ -2,6 +2,7 @@ package com.ertugrul.springbootmongo.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
