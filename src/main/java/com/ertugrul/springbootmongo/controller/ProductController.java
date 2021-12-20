@@ -2,7 +2,6 @@ package com.ertugrul.springbootmongo.controller;
 
 import com.ertugrul.springbootmongo.entity.Product;
 import com.ertugrul.springbootmongo.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
@@ -17,8 +16,11 @@ import java.util.List;
 @RequestMapping("/api/products/")
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("")
     public MappingJacksonValue findAllProductList() {
